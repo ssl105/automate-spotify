@@ -55,6 +55,7 @@ class AddToPlaylists:
                 "Authorization": "Bearer {}".format(self.spotify_token)
             }
         )
+        
 
         # search for the playlist with the correct name
         response_json = response.json()
