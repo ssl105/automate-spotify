@@ -38,8 +38,35 @@ class AddToPlaylists:
         else:
             raise Exception("No song found for {} by {}".format(song_name, artist))
 
+
+    # function to search and return a user's playlist
+    # playlist - name of the playlist
+    # 
+    # response[i]["id"] - the playlist with the corresponding name
     def get_playlist(self, playlist_name):
-        pass
+        # search query
+        query = "https://api.spotify.com/v1/users/{}/playlists".format(self.spotify_user_id)
+
+        # send http request
+        response = requests.get(
+            query,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {}".format(self.spotify_token)
+            }
+        )
+
+        # search for the playlist with the correct name
+        response_json = response.json()
+        for i in range(len(response_json)):
+            if response_json[i]["name"] == playlist_name:
+                return response_json[i]["id"]
+            
+        # no playlist found
+        return None
+
+
+
 
     def add_song_to_playlists(self):
         pass
