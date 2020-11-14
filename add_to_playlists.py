@@ -2,10 +2,11 @@ import requests
 import json
 
 from exceptions import ResponseException
+from user_info import user_id, token_code
 
 class AddToPlaylists:
 
-    def __init__(self, user, token):
+    def __init__(self, user = user_id, token = token_code):
         self.spotify_user_id = user
         self.spotify_token = token
 

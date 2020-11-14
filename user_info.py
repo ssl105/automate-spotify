@@ -1,0 +1,3 @@
+# default user info 
+token_code = "BQB7uYB5nI594H3ZxpRxXtKYsulwoBzMKkqw9Y3G2uQH9AztFv6IjSRvmE84uQ6lr_3NDiMtdru5oEKSmwtb7qdAaqMrZwT6w_NzAsXZj9MvXSmfrLv4432ljYyNRO3oW"
+user_id = "1247556030"
