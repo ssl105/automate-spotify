@@ -1,7 +1,6 @@
 import requests
 import json
 
-from exceptions import ResponseException
 from user_info import user_id, token_code
 
 class AddToPlaylists:
@@ -18,7 +17,7 @@ class AddToPlaylists:
     def get_song(self, artist, song_name):
 
         # search query using spotify web api
-        query = "https://api.spotify.com/v1/search?q=track:{}+artist:{}&type=track&offset=0&limit=20".format(
+        query = "https://api.spotify.com/v1/search?q={}+{}&type=track&offset=0&limit=20".format(
             song_name,
             artist
         )
@@ -34,13 +33,14 @@ class AddToPlaylists:
 
         # get the list of songs returned
         response_json = response.json()
-        songs = response_json["tracks"]["items"]
+        song = response_json["tracks"]["items"]
 
         # return the song on the top of list if it exists
-        if songs:
-            return songs[0]["id"]
+        if song:
+            return song[0]["uri"]
         else:
-            raise Exception("No song found for {} by {}".format(song_name, artist))
+            message = "No song found for {} by {}".format(song_name, artist)
+            raise Exception(message)
 
 
     # function to search and return a user's playlist
@@ -63,9 +63,10 @@ class AddToPlaylists:
 
         # search for the playlist with the correct name
         response_json = response.json()
+        playlists = response_json["items"]
         for i in range(len(response_json)):
-            if response_json[i]["name"] == playlist_name:
-                return response_json[i]["id"]
+            if playlists[i]["name"] == playlist_name:
+                return playlists[i]["id"]
             
         # no playlist found
         return None
@@ -88,8 +89,8 @@ class AddToPlaylists:
         )
 
         # check for valid response status
-        if response.status_code != 200:
-            raise ResponseException(response.status_code)
+        if response.status_code != 201:
+            print("Could not add to playlist")
 
         response_json = response.json()
         return response_json
@@ -102,7 +103,7 @@ class AddToPlaylists:
         # get id list for playlist
         id_list = []
         for i in range(len(string_list)):
-            id_list[i] = self.get_playlist(string_list[i])
+            id_list.append(self.get_playlist(string_list[i]))
 
         # add song to playlists
         for i in range(len(id_list)):
