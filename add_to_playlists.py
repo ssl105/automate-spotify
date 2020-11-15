@@ -106,5 +106,8 @@ class AddToPlaylists:
 
         # add song to playlists
         for i in range(len(id_list)):
+            if id_list is None:
+                continue
+
             self.add_song_to_playlist(id_list[i], song_id)
 
