@@ -1,3 +1,3 @@
-# default user info 
-token_code = "BQAbaThLa_-mh_fOlW-y1zQElgnhUVrSRdyASLYdk_jqWDbyTMZtXmJ00ATzoya6CcJoKJ-gaPJWwLISzAqccEhyRg6-9CLvmkXQyp9X34riW6gqObn5S8FUWW21gYkWcQbVO_IcCeQ01QY2vg3PZFYSue94kjEei8SZq-6kjNY7PqpWSlulnY97-Cj9djmL34vHlSHTUYnzM-e_X5z3EjVQbA"
-user_id = "1247556030"
+# default 
+token_code  = ""
+user_id = ""
